@@ -1,0 +1,4 @@
+1. Compilation
+	1.1 mpicc *.c
+2. Execution
+	2.1 mpirun -np <num_process> ./a.out -i <path to data file> -n <num of Clusters>

@@ -1,0 +1,28 @@
+Setting up Hadoop for KMeans
+
+1. Download hadoop-1.0.4-bin.tar.gz from https://archive.apache.org/dist/hadoop/core/hadoop-1.0.4/
+2. Extract the above tar file.
+3. Using Eclipse to Compile your Hadoop Program into a jar file:
+	3.1 Start Eclipse
+	3.2 Create a Java Project with name as KMeansHadoop
+	3.3 Copy the three files provided in kmeans-hadoop-code.
+	3.4 Go to project -> properties-> Java Build Path-> Libraries add the following jar files as External Jars:hadoop-core-1.0.4.jar (path to hadoop-core-1.0.4.jar folder is <path to extracted hadoop-1.0.4 folder/hadoop-core-1.0.4.jar> ).
+	3.5 Goto File ->Export -> Java -> Runnable JAR file-> Next
+	3.6 Select the project that you want to export and give a suitable name and path for the jar file.
+	3.7 Go Next->Next. 
+	3.8 Set the name of the main class and then finish. Below we assume the jar file is in your home directory.
+
+
+Running a Hadoop program:
+1. Make a folder kmeans. Inside kmeans make 2 folders "data", "center"
+2. Put datapoints file in "data" folder.
+3. Place initial centroid centers in centers.txt file and place it inside center folder.
+	3.1 You may choose any method to chosse initial cluster centers.
+	3.2 We took top 5 points deom datapoints file.
+
+Running Hadoop.
+1. We hope that hadoop cluster setup is complete. 
+2. Copy kmeans folder to hdfs .
+	2.1 bin/hadoop dfs -copyFromLocal <path to kmeans folder> /user/hduser/kmeans
+3. Execute
+	3.1 bin/hadoop jar wc2.jar -D mapred.map.tasks=M mapred.reduce.tasks=R where M,R are the number of Map and Reduce task you want.
